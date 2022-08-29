@@ -14,3 +14,8 @@ func (c *GoodsController) Get() {
 func (c *GoodsController) Add() {
 	c.Ctx.WriteString("add goods")
 }
+
+func (c *GoodsController) Edit() {
+	id := c.GetString("id")
+	c.Ctx.WriteString("id:" + id)
+}
