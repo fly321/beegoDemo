@@ -19,3 +19,8 @@ func (c *GoodsController) Edit() {
 	id := c.GetString("id")
 	c.Ctx.WriteString("id:" + id)
 }
+
+func (c *GoodsController) DoAdd() {
+	name := c.GetString("name", "defaultName")
+	c.Ctx.WriteString(name)
+}
