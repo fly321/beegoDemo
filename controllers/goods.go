@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	beego "github.com/beego/beego/v2/server/web"
 	"strconv"
 )
@@ -28,7 +29,21 @@ func (c *GoodsController) Edit() {
 	c.Ctx.WriteString(strconv.Itoa(id))
 }
 
+type User struct {
+	Id    int      `form:"id"`
+	Name  string   `form:"name"`
+	Hobby []string `form:"hobby"`
+}
+
 func (c *GoodsController) DoAdd() {
-	name := c.GetString("name", "defaultName")
-	c.Ctx.WriteString(name)
+	/*name := c.GetString("name", "defaultName")
+	c.Ctx.WriteString(name)*/
+
+	user := User{}
+	if err := c.ParseForm(&user); err != nil {
+		c.Ctx.WriteString("parse form error")
+		return
+	}
+	fmt.Printf("%#v\r\n", user)
+	c.Ctx.WriteString(user.Name)
 }
