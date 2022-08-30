@@ -1,6 +1,9 @@
 package controllers
 
-import beego "github.com/beego/beego/v2/server/web"
+import (
+	beego "github.com/beego/beego/v2/server/web"
+	"strconv"
+)
 
 type GoodsController struct {
 	beego.Controller
@@ -16,8 +19,13 @@ func (c *GoodsController) Add() {
 }
 
 func (c *GoodsController) Edit() {
-	id := c.GetString("id")
-	c.Ctx.WriteString("id:" + id)
+	//id := c.GetString("id")
+	id, err := c.GetInt("id")
+	if err != nil {
+		c.Ctx.WriteString("id is not int")
+		return
+	}
+	c.Ctx.WriteString(strconv.Itoa(id))
 }
 
 func (c *GoodsController) DoAdd() {
