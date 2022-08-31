@@ -47,3 +47,13 @@ func (c *GoodsController) DoAdd() {
 	fmt.Printf("%#v\r\n", user)
 	c.Ctx.WriteString(user.Name)
 }
+
+func (c *GoodsController) GetGood() {
+	user := User{
+		Id:    1,
+		Name:  "fly",
+		Hobby: []string{"sing", "dance"},
+	}
+	c.Data["json"] = user
+	c.ServeJSON()
+}

@@ -11,4 +11,5 @@ func init() {
 	beego.Router("/goods/add", &controllers.GoodsController{}, "get:Add")
 	beego.Router("/goods/edit", &controllers.GoodsController{}, "get:Edit")
 	beego.Router("/goods/doAdd", &controllers.GoodsController{}, "post:DoAdd")
+	beego.Router("/goods/getGood", &controllers.GoodsController{}, "get:GetGood")
 }
