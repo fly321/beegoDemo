@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"encoding/xml"
 	"fmt"
+	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 	"strconv"
 )
@@ -56,4 +58,27 @@ func (c *GoodsController) GetGood() {
 	}
 	c.Data["json"] = user
 	c.ServeJSON()
+}
+
+type Product struct {
+	Title   string `form:"title" xml:"title"`
+	Content string `form:"content" xml:"content"`
+}
+
+func (c *GoodsController) PostXml() {
+	log := logs.NewLogger()
+	log.SetLogger(logs.AdapterConsole)
+	x := string(c.Ctx.Input.RequestBody)
+	log.Info(x)
+	p := Product{}
+	if err1 := xml.Unmarshal(c.Ctx.Input.RequestBody, &p); err1 != nil {
+		//log.Error(err1)
+		c.Data["json"] = err1
+		c.ServeJSON()
+	} else {
+		fmt.Printf("%#v", p)
+		c.Data["json"] = p
+		c.ServeJSON()
+	}
+
 }
