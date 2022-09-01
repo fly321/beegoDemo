@@ -14,4 +14,5 @@ func init() {
 	beego.Router("/goods/getGood", &controllers.GoodsController{}, "get:GetGood")
 	beego.Router("/goods/postXml", &controllers.GoodsController{}, "post:PostXml")
 	beego.Router("/goods/apiDemo/:id", &controllers.GoodsController{}, "get:ApiDemo")
+	beego.Router("/rg/rgtest/:id([0-9]+).html", &controllers.ReController{}, "get:RgTest")
 }
