@@ -82,3 +82,8 @@ func (c *GoodsController) PostXml() {
 	}
 
 }
+
+func (c *GoodsController) ApiDemo() {
+	id := c.Ctx.Input.Param(":id")
+	c.Ctx.WriteString("id is " + id)
+}
